@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using ConsoleApp47;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Bebebebababa
             stringBuilder.CharacterSet = "utf8mb4";
             mySqlConnection = new MySqlConnection(stringBuilder.ToString());
             OpenConnection();
+            MysqlTools.SetConnection(mySqlConnection);
         }
 
         private bool OpenConnection()

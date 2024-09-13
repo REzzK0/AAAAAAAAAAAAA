@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Bebebebababa.VM
 {
@@ -31,11 +32,33 @@ namespace Bebebebababa.VM
                 _abillities = value;
             }
         }
+        private Mob _selectedMob;
+
+        public Mob SelectedMob
+        {
+            get => _selectedMob; 
+            set 
+            { 
+                _selectedMob = value; 
+            }
+        }
+
+
+        public CommandVM<Mob> SelectMob { get; set; }
 
         public MainVM()
         {
             Mobs = MysqlTools.SimpleSelectFromTable<Mob>();
-            Abillities = MysqlTools.SimpleSelectFromTable<Abillity>();
+            //Abillities = MysqlTools.SimpleSelectFromTable<Abillity>();
+
+            SelectMob = new CommandVM<Mob>(s =>
+            {
+                if (s != null)
+                {
+                    SelectedMob = s;
+                    MessageBox.Show($"Selected Mob - {SelectedMob}");
+                }
+            });
         }
     }
 }

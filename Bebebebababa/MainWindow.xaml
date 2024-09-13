@@ -21,27 +21,34 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock Text="Краткий экскурс по мобам в Майнкрафт" FontSize="35" HorizontalAlignment="Center" FontFamily="Artifakt Element Heavy" Grid.ColumnSpan="2"/>
+            <Button Content="See more" Width="100" CommandParameter="{Binding}"  Command="{Binding DataContext.SelectMob, 
+RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
 
-        <TextBlock Text="Краткий экскурс по мобам в Майнкрафт" FontSize="35" HorizontalAlignment="Center" FontFamily="Artifakt Element Heavy" Grid.ColumnSpan="2"/>
-
-        <ListBox Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Name" Width="80"/>
+                <Label Content="Health" Width="80"/>
+                <Label Content="Damage" Width="80"/>
+                <Label Content="Spawn Location" Width="160"/>
+            </StackPanel>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Mobs}" VerticalAlignment="Center" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Name}" Width="80"/>
+                            <Label Content="{Binding Health}" Width="80"/>
+                            <Label Content="{Binding Damage}" Width="80"/>
+                            <Label Content="{Binding SpawnLocation}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            
+        </StackPanel>
     </Grid>
 </Window>
